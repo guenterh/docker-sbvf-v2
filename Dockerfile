@@ -26,13 +26,12 @@ RUN useradd -ms /bin/bash vufind
 COPY vufind /usr/local/vufind/httpd
 WORKDIR /usr/local/vufind/httpd
 
-RUN chown -R vufind:vufind . 
+RUN chown -R vufind:vufind . && service apache2 start
 #USER vufind
 #RUN composer install
 #USER root
 
 
-[Sun Sep 30 20:30:57.634005 2018] [:error] [pid 59] [client 172.17.0.1:39034] PHP Fatal error:  Uncaught Zend\\Config\\Exception\\RuntimeException: File '/usr/local/vufind/httpd/local/classic/local/config/vufind/./../../../../private_config_values/private_config_classic_local_database.conf' doesn't exist or not readable in /usr/local/vufind/httpd/vendor/zendframework/zend-config/src/Reader/Ini.php:66\nStack trace:\n#0 /usr/local/vufind/httpd/vendor/zendframework/zend-config/src/Reader/Ini.php(218): Zend\\Config\\Reader\\Ini->fromFile('/usr/local/vufi...')\n#1 /usr/local/vufind/httpd/vendor/zendframework/zend-config/src/Reader/Ini.php(176): Zend\\Config\\Reader\\Ini->processKey('@include', './../../../../p...', Array)\n#2 /usr/local/vufind/httpd/vendor/zendframework/zend-config/src/Reader/Ini.php(134): Zend\\Config\\Reader\\Ini->processSection(Array)\n#3 /usr/local/vufind/httpd/vendor/zendframework/zend-config/src/Reader/Ini.php(86): Zend\\Config\\Reader\\Ini->process(Array)\n#4 /usr/local/vufind/httpd/module/VuFind/src/VuFind/Config/PluginFactory.php(87): Zend\\Config\\Reader\\Ini->fromFile('/usr/local/vufi...')\n#5 /usr/local/ in /usr/local/vufind/httpd/vendor/zendframework/zend-servicemanager/src/Exception/ServiceLocatorUsageException.php on line 34
 
 
 
